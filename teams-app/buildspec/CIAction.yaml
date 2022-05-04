@@ -5,12 +5,12 @@ phases:
       nodejs: 12
     commands:
       - cd teams-app
-      - npm install
+      - npm ci
 
       - pip install --upgrade awscli
   pre_build:
     commands:
-      - npm run build
+      - npm run build:dev
   build:
     commands:
       - aws s3 sync build/ $WEBSITE_S3_BUCKET/
