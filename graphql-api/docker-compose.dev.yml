@@ -1,0 +1,54 @@
+version: '3.1'
+
+services:
+  mongodb:
+    container_name: seatti_api_mongo_db
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME}
+    ports:
+      - 27017:27017
+    restart: always
+    volumes:
+      - ./mongoCreateUser.js:/docker-entrypoint-initdb.d/mongoCreateUser.js:ro
+      - mongodb:/data/db
+  seatti-api:
+    container_name: seatti_api
+    build:
+      context: .
+      dockerfile: .docker/dev/Dockerfile
+    ports:
+      - 3030:3030
+    volumes:
+      - .:/data/app:delegated
+      - ~/.aws:/root/.aws
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      ADDRESS: "localhost"
+      PORT: 3030
+      MONGO_DB_HOST: "host.docker.internal"
+      MONGO_DB_PORT: 27017
+      MONGO_DB_NAME: "seatti"
+      MONGO_DB_USER: "root"
+      MONGO_DB_PASSWORD: "root"
+      MONGO_DB_CONNECTION: "mongodb"
+      MONGO_DB_HOST_LOGS: "host.docker.internal"
+      MONGO_DB_PORT_LOGS: 27017
+      MONGO_DB_NAME_LOGS: "seatti"
+      MONGO_DB_USER_LOGS: "root"
+      MONGO_DB_PASSWORD_LOGS: "root"
+      MONGO_DB_CONNECTION_LOGS: "mongodb"
+      GRAPHQL_PATH: "/"
+      GRAPHQL_PLAYGROUND: "true"
+      GRAPHQL_DEBUG: "true"
+      DEVELOPMENT_AUTH: "false"
+      APP_ID: "0a3b1bb1-b4b2-4bdf-8eea-c41ee08c5dc3"
+      APP_SECRET_SSO: "oHn7Q~YtEPAPfbLyghcuws_X_MvrYyQ2i5gnz"
+      AWS_PROFILE: "seatti"
+      AWS_S3_MEDIA_BUCKET: "seatti-media-dev"
+
+volumes:
+  mongodb:

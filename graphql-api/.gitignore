@@ -1,0 +1,11 @@
+node_modules
+dist
+.idea
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+coverage/
+
+# Docker
+.docker/dev-local

@@ -1,0 +1,1 @@
+export const DEFAULT_MINUTE_INTERVAL = 30

@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  seatti-api:
+    image: 527173208340.dkr.ecr.eu-central-1.amazonaws.com/my-seatti-prod:latest
+    pull_policy: build
+    ports:
+      - 443:3030
+      - 80:3030
+    environment:
+      ADDRESS: "localhost"
+      PORT: 3030
+      MONGO_DB_HOST: "seatti-prod-db.9zunc.mongodb.net"
+      MONGO_DB_PORT: ""
+      MONGO_DB_NAME: "seatti"
+      MONGO_DB_USER: "seatti-api-prod"
+      MONGO_DB_PASSWORD: "SECRET_PLACEHOLDER"
+      MONGO_DB_CONNECTION: "mongodb+srv"
+      MONGO_DB_HOST_LOGS: "seatti-logs-db.wecsk.mongodb.net"
+      MONGO_DB_PORT_LOGS: ""
+      MONGO_DB_NAME_LOGS: "prod"
+      MONGO_DB_USER_LOGS: "user-logs-delegated"
+      MONGO_DB_PASSWORD_LOGS: "TRACKING_DB_SECRET_PLACEHOLDER"
+      MONGO_DB_CONNECTION_LOGS: "mongodb+srv"
+      GRAPHQL_PATH: "/"
+      GRAPHQL_PLAYGROUND: "false"
+      GRAPHQL_DEBUG: "false"
+      APP_ID: "7cd27ae1-336d-49d5-800b-6365d9a4b6b7"
+      APP_SECRET: "ZHi7Q~ftXh5tLCl~JVIBoNJ3ntUlhlfuEO439"
+      AWS_S3_MEDIA_BUCKET: "seatti-media-prod"
+
+
