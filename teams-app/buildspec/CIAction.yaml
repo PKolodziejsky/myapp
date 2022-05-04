@@ -4,7 +4,7 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-      - git remote add origin https://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@github.com/PKolodziejsky/myapp
+      - git remote add origin https://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@github.com/PKolodziejsky/myapp
       - cd teams-app
       - npm ci
 
