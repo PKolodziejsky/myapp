@@ -3,8 +3,6 @@ name: CodeCommit
 
 on: [push]
 
-  workflow_dispatch:
-
 jobs:
   codecommit:
     runs-on: ubuntu-latest
