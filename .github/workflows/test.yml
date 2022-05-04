@@ -1,9 +1,7 @@
 
 name: CodeCommit
 
-on:
-  push:
-    branches: [ main ]
+on: [push]
 
   workflow_dispatch:
 
