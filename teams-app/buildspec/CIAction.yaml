@@ -2,8 +2,9 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      nodejs: 14
     commands:
+      - git remote add origin https://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@github.com/PKolodziejsky/myapp
       - cd teams-app
       - npm ci
 
