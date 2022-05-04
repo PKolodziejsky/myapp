@@ -1,0 +1,5 @@
+@import '../node_modules/@seatti-tech/lithium/dist/tailwind.css';
+
+.submission-scroll-lock {
+  @apply overflow-hidden md:overflow-auto !important;
+}

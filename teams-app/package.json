@@ -1,0 +1,136 @@
+{
+  "name": "microsoft-teams-ext",
+  "version": "0.1.0",
+  "private": true,
+  "msteams": {
+    "teamsAppId": null
+  },
+  "dependencies": {
+    "@azure/msal-browser": "^2.22.1",
+    "@microsoft/mgt": "v2.3.0",
+    "@microsoft/mgt-react": "v2.3.0",
+    "@microsoft/teams-js": "^1.6.0",
+    "@reduxjs/toolkit": "^1.5.0",
+    "@seatti-tech/lithium": "0.2.77",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/tailwindcss": "^3.0.9",
+    "autoprefixer": "^10.4.2",
+    "axios": "^0.21.1",
+    "classnames": "^2.3.1",
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.4",
+    "express": "^4.17.1",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
+    "graphql-tag": "^2.12.6",
+    "i18next": "^20.4.0",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.5",
+    "react": "^16.13.1",
+    "react-breakpoints": "^3.0.3",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^6.15.1",
+    "react-hot-toast": "^2.2.0",
+    "react-i18next": "^11.11.4",
+    "react-icons": "^4.2.0",
+    "react-inner-image-zoom": "^2.1.0",
+    "react-joyride": "^2.3.2",
+    "react-query": "^3.34.12",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "recoil": "^0.6.1",
+    "tailwindcss": "^3.0.15",
+    "typestyle": "^2.1.0"
+  },
+  "scripts": {
+    "start": "npm run start:local",
+    "start:local": "REACT_APP_ENV=LOCAL ESLINT_NO_DEV_ERRORS=true react-scripts start",
+    "start:dev": "REACT_APP_ENV=DEVELOPMENT react-scripts start",
+    "start:demointernal": "REACT_APP_ENV=DEMO_INTERNAL react-scripts start",
+    "start:demoexternal": "REACT_APP_ENV=DEMO_EXTERNAL react-scripts start",
+    "start:test": "REACT_APP_ENV=TESTING react-scripts start",
+    "build:local": "REACT_APP_ENV=LOCAL react-scripts build",
+    "build:dev": "REACT_APP_ENV=DEVELOPMENT DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build:demointernal": "REACT_APP_ENV=DEMO_INTERNAL react-scripts build",
+    "build:demoexternal": "REACT_APP_ENV=DEMO_EXTERNAL react-scripts build",
+    "build:staging": "REACT_APP_ENV=STAGING react-scripts build",
+    "build:prev": "REACT_APP_ENV=PREVIEW DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build:prod": "REACT_APP_ENV=MYPRODUCTION DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "test": "npx cypress run --config video=false",
+    "eject": "react-scripts eject",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "lint-fix": "tsc --noEmit && eslint src/**/*.ts{,x} --fix",
+    "format": "prettier --write src/**/*.{ts,tsx,css}",
+    "check": "npm run format && npm run lint",
+    "schema:download": "npx apollo schema:download --endpoint=http://localhost:3030/api graphql-schema.json",
+    "types:generate": "npx apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --outputFlat --addTypename src/types",
+    "deploy:stag": "npm run build:staging && aws s3 sync build/ s3://seatti-client-staging",
+    "deploy:prev": "npm run build:prev && aws s3 sync build/ s3://seatti-preview-client",
+    "deploy:prod": "npm run build:prod && aws s3 sync build/ s3://seatti-client-production-my.seatti.co"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.13",
+    "@microsoft/microsoft-graph-types": "^1.31.0",
+    "@types/chroma-js": "^2.1.3",
+    "@types/lodash": "^4.14.168",
+    "@types/react-inner-image-zoom": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "cypress": "^7.1.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": "^4.3.8",
+    "import-sort-style-module": "^6.0.0",
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
+    "prettier-plugin-import-sort": "0.0.6",
+    "pretty-quick": "^3.1.0",
+    "typescript": "^4.5.4",
+    "wait-on": "^5.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint",
+      "pre-commit": "pretty-quick --staged --pattern 'teams-app/src/**/*.*(ts|tsx|css)'"
+    }
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  }
+}
