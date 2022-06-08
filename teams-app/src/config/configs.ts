@@ -17,8 +17,8 @@ export const Local: AppConfig = {
 }
 
 export const Development: AppConfig = {
-  BASE_ENDPOINT: 'https://seatti-dev.eu.ngrok.io',
-  REDIRECT_URI: 'https://feat-meeting-room-booking.d2e3tx8qb61s2a.amplifyapp.com',
+  BASE_ENDPOINT: 'PLACEHOLDER',
+  REDIRECT_URI: 'XYZ',
   STRIPPED_REDIRECT_URI: 'feat-meeting-room-booking.d2e3tx8qb61s2a.amplifyapp.com',
   API_ENDPOINT: '/api',
   MEDIA_ENDPOINT: '/media',
