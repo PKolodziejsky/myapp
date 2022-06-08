@@ -1,20 +1,14 @@
 version: 0.2
 phases:
-  install:
-    runtime-versions:
-      nodejs: latest
-    commands:
-      # Install dependencies needed
-      - npm install
-
-      # Upgrade AWS CLI to the latest version
-      - pip install --upgrade awscli
   pre_build:
+    on-failure: CONTINUE
     commands:
-      # Build the react app to give an optimized production build
-      - npm run build
-  build:
+      - npm install -g @aws-amplify/cli
+      - aws configure set aws_access_key_id AKIAXVPPYZEKBYBLZBJC 
+      - aws configure set aws_secret_access_key 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 
+      - aws configure set default.region eu-central-1
+      - aws amplify create-branch --app-id=dcy9ioq1oqxov --branch-name=$BranchName --environment-variables EC2=$EC2_URL,REDIRECT=https://$BranchName.dcy9ioq1oqxov.amplifyapp.com,ID=$BranchName.dcy9ioq1oqxov.amplifyapp.com
+   post_build:
     commands:
-      # Copy the content of build folder into website s3 bucket
-      - aws s3 sync build/ s3://$WEBSITE_S3_BUCKET/
-
+      - aws amplify update-branch --app-id=dcy9ioq1oqxov --branch-name=$BranchName --environment-variables EC2=$EC2_URL,REDIRECT=https://$BranchName.dcy9ioq1oqxov.amplifyapp.com,ID=$BranchName.dcy9ioq1oqxov.amplifyapp.com
+      
