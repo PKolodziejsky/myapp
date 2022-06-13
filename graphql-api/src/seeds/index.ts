@@ -5,7 +5,7 @@ import { join } from 'path'
 require('dotenv').config()
 
 const seed = async () => {
-  await mongoose.connect('mongodb://root:root@seatti-mongo-db:27017/seatti?authSource=admin')
+  await mongoose.connect('mongodb://root:root@localhost:27017/seatti?authSource=admin')
 
   const files = readdirSync(__dirname)
     .filter((name) => name.startsWith('01-seatti-demo'))
