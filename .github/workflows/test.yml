@@ -18,6 +18,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY_PIOTR }}
         shell: bash
         run: |
+          sed -i -e "s/TOKEN/${{secrets.NPM_TOKEN}}/g" teams-app/.npmrc
           git config --global credential.UseHttpPath true
           git config --global credential.helper '!aws codecommit credential-helper $@'
           git remote add codecommit https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/myapp
