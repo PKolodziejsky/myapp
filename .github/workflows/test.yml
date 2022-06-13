@@ -1,7 +1,7 @@
 
 name: CodeCommit
 
-on: [push]
+on: workflow_dispatch 
 
 jobs:
   codecommit:
