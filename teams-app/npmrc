@@ -1,4 +1,0 @@
-engine-strict=true
-//npm.pkg.github.com/:_authToken=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
-@seatti-tech:registry=https://npm.pkg.github.com
-npm.pkg.github.com/:always-auth=true
