@@ -7,6 +7,7 @@ phases:
       - aws configure set aws_access_key_id AKIAXVPPYZEKBYBLZBJC 
       - aws configure set aws_secret_access_key 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 
       - aws configure set default.region eu-central-1
+      - aws ec2 reboot-instances --instance-ids $EC2_ID
       - aws amplify create-branch --app-id=dcy9ioq1oqxov --branch-name=$BranchName --environment-variables EC2=$EC2_URL,REDIRECT=https://$BranchName.dcy9ioq1oqxov.amplifyapp.com,ID=$BranchName.dcy9ioq1oqxov.amplifyapp.com
   post_build:
     commands:
