@@ -4,11 +4,17 @@ phases:
     on-failure: CONTINUE
     commands:
       - npm install -g @aws-amplify/cli
-      - aws configure set aws_access_key_id AKIAXVPPYZEKBYBLZBJC 
-      - aws configure set aws_secret_access_key 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 
+      - wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+      - chmod +x ./jq
+      - cp jq /usr/bin
+      - pip3 install boto3
+      - S=$(python3 secret-scripts/sec.py)
+      - aws configure set aws_access_key_id $(echo $S | cut -d "/" -f 1)  
+      - aws configure set aws_secret_access_key $(echo $S | cut -d "/" -f 2)  
       - aws configure set default.region eu-central-1
+      - aws ec2 reboot-instances --instance-ids $EC2_ID
       - aws amplify create-branch --app-id=dcy9ioq1oqxov --branch-name=$BranchName --environment-variables EC2=$EC2_URL,REDIRECT=https://$BranchName.dcy9ioq1oqxov.amplifyapp.com,ID=$BranchName.dcy9ioq1oqxov.amplifyapp.com
+      - curl -X POST $(aws amplify create-webhook --app-id dcy9ioq1oqxov --branch-name $BranchName | jq -r '.webhook.webhookUrl')
   post_build:
     commands:
       - aws amplify update-branch --app-id=dcy9ioq1oqxov --branch-name=$BranchName --environment-variables EC2=$EC2_URL,REDIRECT=https://$BranchName.dcy9ioq1oqxov.amplifyapp.com,ID=$BranchName.dcy9ioq1oqxov.amplifyapp.com
-      
